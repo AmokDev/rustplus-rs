@@ -1,0 +1,23 @@
+[package]
+name = "rustplus"
+version = "0.1.0"
+description = "Rust+ API Wrapper Written in Rust"
+repository = "https://github.com/AmokDev/rustplus-rs"
+homepage = "https://github.com/AmokDev/rustplus-rs"
+edition = "2024"
+license = "AGPL-3.0"
+readme = "README.md"
+authors = ["AmokDev <amokdevv@gmail.com>"]
+keywords = ["rustplus", "websocket", "protobuf", "gaming", "api"]
+categories = ["asynchronous", "development-tools", "games"]
+
+[dependencies]
+futures-util = "0.3"
+prost = "0.14"
+thiserror = "2.0"
+tokio = { version = "1.51", features = ["full"] }
+tokio-tungstenite = "0.29"
+
+
+[build-dependencies]
+prost-build = "0.14"
