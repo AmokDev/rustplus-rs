@@ -1,21 +1,21 @@
-use rustplus::socket::RustSocket;
+use rustplus::RustSocket;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), rustplus::Error> {
     let mut socket = RustSocket::builder()
-        .ip("185.218.137.36")
+        .ip("YOUR_SERVER_IP")
         .port(28082)
-        .player_id(76561199482541396)
-        .player_token(-1685981582)
-        .build()
-        .unwrap();
+        .player_id(76561199000000000)
+        .player_token(123456)
+        .build()?;
 
-    socket.connect().await.unwrap();
-    // let mut events = socket.events();
+    socket.connect().await?;
 
-    let info = socket.get_info().await.unwrap();
+    let info = socket.get_info().await?;
+    println!("Server: {}", info.name);
+    println!("Players: {}/{}", info.players, info.max_players);
+    println!("Map: {} (size {})", info.map, info.map_size);
 
-    println!("{:?}", info);
-
-    // tokio::signal::ctrl_c().await.unwrap();
+    socket.disconnect().await?;
+    Ok(())
 }
